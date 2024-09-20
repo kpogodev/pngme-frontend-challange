@@ -1,12 +1,15 @@
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import type { Metadata } from 'next'
+
+import { ThemeProvider } from '@/components/theme-provider'
+
 import '@/styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Pngme - Frontend Challange',
-  description: 'Frontend Challange',
+  title: 'Stock Price Viewer',
+  description: 'Search and view real-time stock price information',
   icons: [{ rel: 'icon', url: '/favicon.ico' }],
 }
 
@@ -16,8 +19,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html
+      lang="en"
+      suppressHydrationWarning
+    >
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
