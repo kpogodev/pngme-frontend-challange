@@ -2,6 +2,8 @@ import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 
 import { ThemeProvider } from '@/components/theme-provider'
+import { Header } from './_components/header'
+import { Footer } from './_components/footer'
 
 import '@/styles/globals.css'
 
@@ -29,7 +31,11 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem
         >
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            {children}
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
