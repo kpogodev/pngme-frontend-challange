@@ -1,18 +1,19 @@
 import { Suspense } from 'react'
 
-import { DotPattern } from '@/components/magicui/dot-pattern'
 import { cn } from '@/lib/utils'
 import { SearchBar } from './_components/search-bar'
 import { SearchBarFallback } from './_components/search-bar-fallback'
+import { PageHeader } from './_components/page-header'
+import { DotPattern } from '@/components/magicui/dot-pattern' // Decorative SVG pattern
 
 export default function Home() {
   return (
     <main className="relative container py-10 flex-1 z-0 sm:grid sm:place-items-center">
-      <div className="flex flex-col items-center">
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-center">Stock Price Viewer</h1>
-        <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center mt-2">
-          Search and view real-time stock price information
-        </p>
+      <div className="flex flex-col items-center gap-5 sm:gap-10">
+        <PageHeader
+          title="Stock Price Viewer"
+          description="Enter a stock symbol to view real-time price information"
+        />
         <Suspense fallback={<SearchBarFallback />}>
           <SearchBar />
         </Suspense>

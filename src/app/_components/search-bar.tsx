@@ -83,7 +83,7 @@ export function SearchBar() {
   }, [searchParamStockSymbol])
 
   return (
-    <div className="w-[90vw] max-w-96 mt-5 sm:mt-10">
+    <div className="w-[90vw] max-w-96">
       <Popover
         open={isDropdownOpen}
         onOpenChange={setIsDropdownOpen}
@@ -98,7 +98,7 @@ export function SearchBar() {
             </label>
             <Input
               ref={inputRef}
-              name="search"
+              id="search"
               type="search"
               autoComplete="off"
               defaultValue={searchParamStockSymbol}
@@ -120,6 +120,7 @@ export function SearchBar() {
             isError={isError}
             isLoading={isLoading}
             error={error}
+            handleClose={setIsDropdownOpen}
           />
         </PopoverContent>
       </Popover>

@@ -7,12 +7,14 @@ import { cn } from '@/lib/utils'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { createQueryString } from '@/utils/create-query-string'
 import type { Ticker } from '@/types'
+import type { SyntheticEvent, KeyboardEvent } from 'react'
 
 type SearchDropdownContentProps = {
   isLoading: boolean
   isError: boolean
   error: Error | null
   data: Ticker[] | undefined
+  handleClose: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function LoadingState() {
@@ -42,20 +44,27 @@ function NoResultsState() {
   )
 }
 
-export function SearchDropdownContent({ isLoading, isError, error, data }: SearchDropdownContentProps) {
+export function SearchDropdownContent({ isLoading, isError, error, data, handleClose }: SearchDropdownContentProps) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
   const dataNoRecords = Array.isArray(data) && data.length === 0
 
-  const handleSetStockSymbol = (event: React.KeyboardEvent | React.MouseEvent, symbol: Ticker['symbol']) => {
-    // If the event is a keydown event, only proceed if the key is Enter
-    if (event.type === 'keydown' && (event as React.KeyboardEvent).key !== 'Enter') return
+  const handleSetStockSymbol = (e: SyntheticEvent<HTMLLIElement>, symbol: Ticker['symbol']) => {
+    const isInvalidKey =
+      e.type === 'keydown' &&
+      (e as KeyboardEvent<HTMLLIElement>).key !== 'Enter' &&
+      (e as KeyboardEvent<HTMLLIElement>).key !== ' '
+
+    if (isInvalidKey) return
 
     // Create a new query string with the stock symbol and push it to the router
     const queryString = createQueryString(searchParams, 'stock_symbol', symbol)
     router.push(`${pathname}?${queryString}`)
+
+    // If the event is valid key press, close the popover
+    if (!isInvalidKey) handleClose(false)
   }
 
   // Return different states based on isLoading, isError, and data values
