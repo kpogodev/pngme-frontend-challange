@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 
 import { ThemeProvider } from '@/components/theme-provider'
+import { QueryProvider } from '@/components/query-provider'
 import { Header } from './_components/header'
 import { Footer } from './_components/footer'
 
@@ -31,11 +32,13 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem
         >
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            {children}
-            <Footer />
-          </div>
+          <QueryProvider>
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              {children}
+              <Footer />
+            </div>
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>
