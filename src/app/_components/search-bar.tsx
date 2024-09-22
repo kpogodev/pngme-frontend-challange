@@ -15,18 +15,18 @@ import { SearchDropdownContent } from './search-dropdown-content'
  * The time in milliseconds before the query is considered stale.
  *
  * Although requriements clearly state that we should get real-time data,
- * I've set the stale time to 60 seconds to reduce the number of requests as it was
+ * I've set the stale time to 120 seconds to reduce the number of requests as it was
  * quickly exhausting the API rate limits during development (25 requests per day).
  *
  * Moreover, it would be actually better to cache the data for a longer period of time
  * as the only edge case I can think of is when the user is searching for a stock that
  * was just listed during the ongoing session of THIS particular user within the stale time period.
  */
-const QUERY_STALE_TIME = 60 * 1000
+const QUERY_STALE_TIME = 2 * 60 * 1000
 
 export function SearchBar() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
-  const [isQueryEnabled, setIsQueryEnabled] = useState<boolean>(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isQueryEnabled, setIsQueryEnabled] = useState(false)
 
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -39,8 +39,12 @@ export function SearchBar() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['tickerSuggestions', inputRef.current?.value],
     queryFn: () => {
-      setIsQueryEnabled(false) // in previous tanstack version it would run deprecated onSucess callback
-      return alphavantageApi.getTickersSuggestions(inputRef.current?.value!)
+      // in previous tanstack version I would run now deprecated onSucess callback
+      setIsQueryEnabled(false)
+
+      if (!inputRef.current?.value) return
+
+      return alphavantageApi.getTickersSuggestions(inputRef.current?.value)
     },
     retry: false,
     enabled: isQueryEnabled,
