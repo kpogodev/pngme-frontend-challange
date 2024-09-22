@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useDebouncedCallback } from 'use-debounce'
 
-import { alphavantageApi } from '@/api_requests'
+import { alphavantageApi } from '@/services'
 import { Input } from '@/components/ui/input'
 import { Popover, PopoverContent, PopoverAnchor } from '@/components/ui/popover'
 import { SearchDropdownContent } from './search-dropdown-content'
