@@ -1,13 +1,15 @@
 'use client'
+
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { Search, LoaderCircle, CircleAlert, SearchX } from 'lucide-react'
-import { PopoverClose } from '@/components/ui/popover'
 
-import { cn } from '@/lib/utils'
+import { PopoverClose } from '@/components/ui/popover'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { createQueryString } from '@/utils/create-query-string'
-import type { Ticker } from '@/types'
+import { cn } from '@/lib/utils'
+
 import type { SyntheticEvent, KeyboardEvent } from 'react'
+import type { Ticker } from '@/types'
 
 type SearchDropdownContentProps = {
   isLoading: boolean

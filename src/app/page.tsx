@@ -1,11 +1,11 @@
 import { Suspense } from 'react'
 
 import { cn } from '@/lib/utils'
+import { DotPattern } from '@/components/magicui/dot-pattern' // Decorative SVG pattern
 import { PageHeader } from './_components/page-header'
 import { SearchBar } from './_components/search-bar'
 import { SearchBarFallback } from './_components/search-bar-fallback'
 import { StockCard } from './_components/stock-card'
-import { DotPattern } from '@/components/magicui/dot-pattern' // Decorative SVG pattern
 
 export default function Home() {
   return (
