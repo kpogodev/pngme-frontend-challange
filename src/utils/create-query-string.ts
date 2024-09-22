@@ -2,7 +2,7 @@
 export const createQueryString = (
   searchParams: URLSearchParams | Readonly<URLSearchParams>,
   name: string,
-  value: string
+  value: string,
 ) => {
   const params = new URLSearchParams(searchParams.toString())
   params.set(name, value)

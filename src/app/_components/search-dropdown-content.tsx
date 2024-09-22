@@ -19,8 +19,8 @@ type SearchDropdownContentProps = {
 
 function LoadingState() {
   return (
-    <div className="flex items-center text-sm p-3 gap-2">
-      <LoaderCircle className="w-5 h-5 animate-spin" />
+    <div className="flex items-center gap-2 p-3 text-sm">
+      <LoaderCircle className="h-5 w-5 animate-spin" />
       Searching...
     </div>
   )
@@ -29,7 +29,7 @@ function LoadingState() {
 function ErrorState({ error }: { error: Error }) {
   return (
     <div className="flex items-center gap-2 p-3 text-sm text-destructive">
-      <CircleAlert className="w-5 h-5" />
+      <CircleAlert className="h-5 w-5" />
       {error.message}
     </div>
   )
@@ -38,7 +38,7 @@ function ErrorState({ error }: { error: Error }) {
 function NoResultsState() {
   return (
     <div className="flex items-center gap-2 p-3 text-sm">
-      <SearchX className="w-5 h-5" />
+      <SearchX className="h-5 w-5" />
       No results found.
     </div>
   )
@@ -76,7 +76,7 @@ export function SearchDropdownContent({ isLoading, isError, error, data, handleC
   return (
     <ScrollArea className={cn('w-full', data?.length! > 4 && 'h-48')}>
       <ul
-        className="w-full flex flex-col"
+        className="flex w-full flex-col"
         role="combobox"
       >
         {data?.map((ticker) => (
@@ -85,14 +85,14 @@ export function SearchDropdownContent({ isLoading, isError, error, data, handleC
             asChild
           >
             <li
-              className="flex justify-between items-center p-3 gap-2 text-xs cursor-pointer transition-colors hover:bg-muted focus-visible:outline-none   focus-visible:bg-muted"
+              className="flex cursor-pointer items-center justify-between gap-2 p-3 text-xs transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-none"
               onClick={(e) => handleSetStockSymbol(e, ticker.symbol)}
               onKeyDown={(e) => handleSetStockSymbol(e, ticker.symbol)}
               role="option"
               tabIndex={0}
             >
               <div className="flex items-center">
-                <Search className="min-w-3 w-3 aspect-square mr-2" />
+                <Search className="mr-2 aspect-square w-3 min-w-3" />
                 <span>{ticker.name}</span>
               </div>
               <div>({ticker.symbol})</div>

@@ -93,7 +93,7 @@ export function SearchBar() {
           <div className="flex flex-col gap-2">
             <label
               htmlFor="search"
-              className="text-xs lg:text-sm font-medium"
+              className="text-xs font-medium lg:text-sm"
             >
               Search by Stock Symbol or Company Name
             </label>
@@ -106,7 +106,7 @@ export function SearchBar() {
               onChange={handleSearchInputChange}
               onFocus={handleSearchInputFocus}
               placeholder="e.g. AAPL, Apple Inc."
-              className="w-full h-12"
+              className="h-12 w-full"
             />
           </div>
         </PopoverAnchor>
@@ -114,7 +114,7 @@ export function SearchBar() {
           onOpenAutoFocus={(e) => e.preventDefault()}
           sideOffset={8}
           avoidCollisions={false}
-          className="w-[92vw] max-w-sm p-0 shadow-md rounded-xl overflow-hidden"
+          className="w-[92vw] max-w-sm overflow-hidden rounded-xl p-0 shadow-md"
         >
           <SearchDropdownContent
             data={data}

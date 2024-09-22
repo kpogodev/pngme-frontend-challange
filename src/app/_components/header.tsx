@@ -8,7 +8,7 @@ export function Header() {
       <div className="container flex items-center">
         <Link
           href="/"
-          className="flex items-center gap-1 font-extrabold text-muted-foreground text-2xl"
+          className="flex items-center gap-1 text-2xl font-extrabold text-muted-foreground"
         >
           <Image
             src="logo.svg"

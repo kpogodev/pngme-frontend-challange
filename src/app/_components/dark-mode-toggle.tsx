@@ -17,11 +17,11 @@ export function DarkModeToggle() {
     <Button
       variant="ghost"
       size="icon"
-      className="ml-auto overflow-hidden relative"
+      className="relative ml-auto overflow-hidden"
       onClick={handleClick}
     >
-      <Sun className="h-5 w-5 absolute inset-0 m-auto dark:translate-y-12 transition-transform" />
-      <Moon className="h-5 w-5 absolute inset-0 m-auto -translate-y-12 dark:translate-y-0 transition-transform" />
+      <Sun className="absolute inset-0 m-auto h-5 w-5 transition-transform dark:translate-y-12" />
+      <Moon className="absolute inset-0 m-auto h-5 w-5 -translate-y-12 transition-transform dark:translate-y-0" />
       <span className="sr-only">Dark Mode Toggle</span>
     </Button>
   )

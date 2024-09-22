@@ -6,8 +6,8 @@ type PageHeaderProps = {
 export function PageHeader({ title, description }: PageHeaderProps) {
   return (
     <div className="flex flex-col items-center sm:gap-2">
-      <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-center">{title}</h1>
-      <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center mt-2">{description}</p>
+      <h1 className="text-center text-3xl font-extrabold sm:text-5xl lg:text-6xl">{title}</h1>
+      <p className="mt-2 text-center text-sm text-muted-foreground sm:text-base md:text-lg">{description}</p>
     </div>
   )
 }
