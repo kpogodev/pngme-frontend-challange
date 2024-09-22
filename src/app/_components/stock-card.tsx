@@ -13,7 +13,7 @@ function StockSymbol({ symbol, isLoading }: { symbol?: string; isLoading: boolea
   return (
     <div className="flex items-center justify-between p-5">
       <h2 className="text-xl text-muted-foreground">Stock Symbol</h2>
-      <span className="!space-y-0 text-xl font-bold">{isLoading ? <Skeleton className="h-7 w-20" /> : symbol}</span>
+      {isLoading ? <Skeleton className="h-7 w-20" /> : <span className="!space-y-0 text-xl font-bold">{symbol}</span>}
     </div>
   )
 }
@@ -24,14 +24,18 @@ function StockPrice({ price, change, isLoading }: { price?: string; change?: str
   return (
     <div className="col-span-4 flex flex-col justify-center p-5 pr-0">
       <span className="text-muted-foreground">Current Price</span>
-      <span className="flex items-center text-2xl font-bold leading-loose">
-        {isLoading ? <Skeleton className="h-12 w-36" /> : price}
-        {changeValue > 0 && !isLoading ? (
-          <TrendingUp className="ml-1 inline-block h-6 w-6 text-green-500" />
-        ) : changeValue < 0 && !isLoading ? (
-          <TrendingDown className="ml-1 inline-block h-6 w-6 text-red-500" />
-        ) : null}
-      </span>
+      {isLoading ? (
+        <Skeleton className="h-12 w-36" />
+      ) : (
+        <span className="flex items-center text-2xl font-bold leading-loose">
+          {price}
+          {changeValue > 0 && !isLoading ? (
+            <TrendingUp className="ml-1 inline-block h-6 w-6 text-green-500" />
+          ) : changeValue < 0 && !isLoading ? (
+            <TrendingDown className="ml-1 inline-block h-6 w-6 text-red-500" />
+          ) : null}
+        </span>
+      )}
     </div>
   )
 }
@@ -40,7 +44,7 @@ function StockInfo({ label, value, isLoading }: { label: string; value?: string;
   return (
     <div className="flex w-full justify-between gap-2">
       <span className="text-muted-foreground">{label}</span>
-      <span className="font-bold">{isLoading ? <Skeleton className="h-5 w-16" /> : value}</span>
+      {isLoading ? <Skeleton className="h-5 w-16" /> : <span className="font-bold">{value}</span>}
     </div>
   )
 }
@@ -71,7 +75,7 @@ export function StockCard() {
     queryKey: ['stock-info', searchParamsSymbol],
     queryFn: () => alphavantageApi.getRealTimeStockInfo(searchParamsSymbol!),
     enabled: !!searchParamsSymbol,
-    staleTime: 0,
+    staleTime: 0, // In order to adhere to requirement of "real-time" stock data
     retry: false,
   })
 
