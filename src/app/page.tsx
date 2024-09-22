@@ -8,7 +8,7 @@ import { DotPattern } from '@/components/magicui/dot-pattern' // Decorative SVG 
 
 export default function Home() {
   return (
-    <main className="relative container py-10 flex-1 z-0 sm:grid sm:place-items-center">
+    <main className="relative container py-10 flex-1 z-0 lg:grid lg:place-items-center">
       <div className="flex flex-col items-center gap-5 sm:gap-10">
         <PageHeader
           title="Stock Price Viewer"
