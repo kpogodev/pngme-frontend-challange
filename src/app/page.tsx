@@ -1,14 +1,15 @@
 import { Suspense } from 'react'
 
 import { cn } from '@/lib/utils'
+import { PageHeader } from './_components/page-header'
 import { SearchBar } from './_components/search-bar'
 import { SearchBarFallback } from './_components/search-bar-fallback'
-import { PageHeader } from './_components/page-header'
+import { StockCard } from './_components/stock-card'
 import { DotPattern } from '@/components/magicui/dot-pattern' // Decorative SVG pattern
 
 export default function Home() {
   return (
-    <main className="relative container py-10 flex-1 z-0 lg:grid lg:place-items-center">
+    <main className="container relative z-0 flex-1 py-10 lg:grid lg:place-items-center">
       <div className="flex flex-col items-center gap-5 sm:gap-10">
         <PageHeader
           title="Stock Price Viewer"
@@ -16,6 +17,9 @@ export default function Home() {
         />
         <Suspense fallback={<SearchBarFallback />}>
           <SearchBar />
+        </Suspense>
+        <Suspense fallback={null}>
+          <StockCard />
         </Suspense>
       </div>
       <DotPattern

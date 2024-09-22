@@ -42,6 +42,7 @@ export function SearchBar() {
       setIsQueryEnabled(false) // in previous tanstack version it would run deprecated onSucess callback
       return alphavantageApi.getTickersSuggestions(inputRef.current?.value!)
     },
+    retry: false,
     enabled: isQueryEnabled,
     staleTime: QUERY_STALE_TIME,
   })
@@ -83,7 +84,7 @@ export function SearchBar() {
   }, [searchParamStockSymbol])
 
   return (
-    <div className="w-[90vw] max-w-96">
+    <div className="w-full max-w-sm">
       <Popover
         open={isDropdownOpen}
         onOpenChange={setIsDropdownOpen}
@@ -113,7 +114,7 @@ export function SearchBar() {
           onOpenAutoFocus={(e) => e.preventDefault()}
           sideOffset={8}
           avoidCollisions={false}
-          className="w-[90vw] max-w-96 p-0 shadow-md rounded-xl overflow-hidden"
+          className="w-[92vw] max-w-sm p-0 shadow-md rounded-xl overflow-hidden"
         >
           <SearchDropdownContent
             data={data}

@@ -56,7 +56,7 @@ export const alphavantageApi = {
     validateFalsyPositiveResponse(responseJson)
 
     const formattedData = transformResponseObject(
-      (responseJson as GetStockInfoSuccessResponse)['Global Quote']
+      (responseJson as GetStockInfoSuccessResponse)['Global Quote'],
     ) as StockInfo
 
     return formattedData
@@ -104,13 +104,16 @@ const validateFalsyPositiveResponse = (responseJson: FalsyPositiveResponse) => {
  * it also doesn't cover all edge cases, but it's a good starting point considering the scope of this task
  */
 const transformResponseObject = <T extends { [key: string]: string }>(responseObject: T): { [key: string]: string } => {
-  return Object.keys(responseObject).reduce((acc, key) => {
-    // Remove numbers and dots and then replace spaces with underscores
-    const newKey = key.replace(/\d+\.\s?/g, '').replace(/\s+/g, '_')
+  return Object.keys(responseObject).reduce(
+    (acc, key) => {
+      // Remove numbers and dots and then replace spaces with underscores
+      const newKey = key.replace(/\d+\.\s?/g, '').replace(/\s+/g, '_')
 
-    // Directly assign the string value, assuming all values are already strings
-    acc[newKey] = responseObject[key]
+      // Directly assign the string value, assuming all values are already strings
+      acc[newKey] = responseObject[key]
 
-    return acc
-  }, {} as { [key: string]: string })
+      return acc
+    },
+    {} as { [key: string]: string },
+  )
 }

@@ -28,11 +28,11 @@ export type Ticker = {
   name: string
   type: string
   region: string
-  marketOpen: string
-  marketClose: string
+  market_open: string
+  market_close: string
   timezone: string
   currency: string
-  matchScore: string
+  match_score: string
 }
 
 export type StockInfo = {
@@ -42,10 +42,10 @@ export type StockInfo = {
   low: string
   price: string
   volume: string
-  latestTradingDay: string
-  previousClose: string
+  latest_trading_day: string
+  previous_close: string
   change: string
-  changePercent: string
+  change_percent: string
 }
 
 export type GetTickersSuccessResponse = {
